@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('post_user', function (Blueprint $table) {
+        Schema::create('post_likes', function (Blueprint $table) {
             $table->foreignId('post_id')->constrained('posts');
             $table->foreignId('user_id')->constrained('users');
             $table->primary(['post_id', 'user_id']);
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_user');
+        Schema::dropIfExists('post_likes');
     }
 };
