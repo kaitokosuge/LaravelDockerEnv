@@ -1,6 +1,6 @@
-export default function IconInput() {
+export default function IconInput({ ...props }) {
     return (
-        <input type="file" name="icon"/>
+        <input type="file" {...props}/>
     );
 }
 

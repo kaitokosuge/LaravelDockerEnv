@@ -13,7 +13,7 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '',
-        icon_file: '',
+        icon_file: undefined,
     });
     console.log(data);
 
@@ -57,7 +57,8 @@ export default function Register() {
                 
                 <div>
                     <h2>アイコン</h2>
-                    <input type="file" name="icon" onChange={(e) => setData("icon_file", e.target.files[0])}/>
+
+                    <IconInput onChange={(e) => setData("icon_file", e.target.files[0])}/>
                 </div>
 
                 <div className="mt-4">
