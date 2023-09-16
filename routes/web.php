@@ -31,7 +31,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(PostController::class)->middleware(['auth'])->group(function(){
-    Route::get('/mypage', 'mypage')->name('mypage');
+    Route::get('/mypage/{user}', 'mypage')->name('mypage');
 });
 
 Route::middleware('auth')->group(function () {

@@ -15,7 +15,7 @@ class Comment extends Model
     }
     public function author()
     {
-        $this->belongsTo(User::class);
+        $this->belongsTo(User::class, 'user_id');
     }
     public function likedBy()
     {

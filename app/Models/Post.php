@@ -9,13 +9,15 @@ class Post extends Model
 {
     use HasFactory;
     
+    protected $with = ['category', 'author', 'images'];
+    
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
     public function author()
     {
-        return $this->belogsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
     public function images()
     {
@@ -28,5 +30,9 @@ class Post extends Model
     public function likedBy()
     {
         return $this->belongsToMany(User::class, 'post_likes', 'post_id', 'user_id');
+    }
+    public function commentNumber()
+    {
+        
     }
 }

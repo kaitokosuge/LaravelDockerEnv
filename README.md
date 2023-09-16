@@ -1,3 +1,10 @@
+## Problem
+- [ ] コメント数やいいねをどこで数える？  
+jsxで数えるとコメントやいいねを全部ロードする必要があってよくない
+modelで数えてpost.commentCount的な感じで取りだしたい   
+- [ ] seederでtruncateしようとすると外部キー制約に引っ掛かる  
+`cascadeOnDelete`してもダメっぽかった
+
 ## 日記
 ### 9/16
 - modelのリレーション書いた  
