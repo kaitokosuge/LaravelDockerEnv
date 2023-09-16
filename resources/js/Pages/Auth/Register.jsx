@@ -4,6 +4,7 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
+import IconInput from '@/Components/IconInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 
 export default function Register() {
@@ -12,7 +13,9 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '',
+        icon_file: '',
     });
+    console.log(data);
 
     useEffect(() => {
         return () => {
@@ -34,7 +37,7 @@ export default function Register() {
         <GuestLayout>
             <Head title="Register" />
 
-            <form onSubmit={submit}>
+            <form onSubmit={submit} enctype="multipart/form-data">
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 
@@ -50,6 +53,11 @@ export default function Register() {
                     />
 
                     <InputError message={errors.name} className="mt-2" />
+                </div>
+                
+                <div>
+                    <h2>アイコン</h2>
+                    <input type="file" name="icon" onChange={(e) => setData("icon_file", e.target.files[0])}/>
                 </div>
 
                 <div className="mt-4">
