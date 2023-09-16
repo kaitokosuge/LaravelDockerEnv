@@ -2,21 +2,26 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
+import IconInput from '@/Components/IconInput';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import { Transition } from '@headlessui/react';
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className }) {
     const user = usePage().props.auth.user;
 
-    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
+    const { data, setData, post, errors, processing, recentlySuccessful } = useForm({
         name: user.name,
         email: user.email,
+        message: user.message,
+        icon_file: undefined,
     });
+    
+    console.log(data);
 
     const submit = (e) => {
         e.preventDefault();
 
-        patch(route('profile.update'));
+        post(route('profile.update'));
     };
 
     return (
@@ -29,7 +34,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 </p>
             </header>
 
-            <form onSubmit={submit} className="mt-6 space-y-6">
+            <form onSubmit={submit} className="mt-6 space-y-6" enctype="multipart/form-data">
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 
@@ -44,6 +49,26 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                     />
 
                     <InputError className="mt-2" message={errors.name} />
+                </div>
+                
+                <div>
+                    <InputLabel value="Icon" />
+                    
+                    <IconInput onChange={(e) => setData("icon_file", e.target.files[0])}/>
+                </div>
+
+                <div>
+                    <InputLabel htmlFor="message" value="Status Message" />
+
+                    <textarea
+                        id="message"
+                        className="mt-1 block w-full"
+                        value={data.message}
+                        onChange={(e) => setData('message', e.target.value)}
+                        placeholder="自己紹介文を書こう！"
+                    />
+                    
+                    <InputError className="mt-2" message={errors.message} />
                 </div>
 
                 <div>

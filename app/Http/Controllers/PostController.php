@@ -13,9 +13,7 @@ class PostController extends Controller
 {
     public function mypage(User $user)
     {
-        $user = Auth::user();
-        // dd($user->posts);
-        $myposts = $user->posts->load('category');
-        return Inertia::render("Post/Mypage", ["posts" => $myposts]);
+        $myposts = $user->posts->load('comments');
+        return Inertia::render("Post/Mypage", ["posts" => $myposts, "user" => $user->load("categories")]);
     }
 }

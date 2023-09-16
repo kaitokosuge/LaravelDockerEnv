@@ -1,33 +1,33 @@
 import React from "react";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
+import TimeLine from "@/Components/TimeLine";
+import Icon from "@/Components/Icon";
 
 const Mypage = (props) => {
-    const { auth, posts } = props;
-    console.log(auth);
+    const { posts, user } = props;
     
     return (
-        <Authenticated auth={auth} header={
+        <Authenticated auth={props.auth} header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    マイページ
+                    { user.name }のマイページ
                 </h2>
             }>
-            
-            <div className="p-12">
-                <h1>{ auth.user.name }</h1>
-                <div>
-                    <div>
-                        { posts.map((post) => (
-                            <div key={post.id} className="my-3">
-                                <p>{ post.body }</p>
-                                <p>{ post.category.name }</p>
-                            </div>
-                        )) }
-                    </div>
-                </div>
+            <div>
+                <Icon user={user}/>
+                <h2>ステータスメッセージ</h2>
+                <p>{ user.message }</p>
+                <h2>フォローカテゴリのリスト</h2>
+                <ul>
+                    { user.categories.map((category) => (
+                        <li> { category.name } </li>
+                    )) }
+                </ul>
             </div>
             
+            <TimeLine posts={ posts }/>
+            
         </Authenticated>
-        );
+    );
 }
 
 export default Mypage;

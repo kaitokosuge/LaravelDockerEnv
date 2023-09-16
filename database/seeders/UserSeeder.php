@@ -18,11 +18,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        // DB::table('users')->truncate(); //データクリア
+        
         DB::table('users')->insert([
             'name' => 'user1',
             'email' => 'user1@gmail.com',
             'password' => Hash::make('password'),
             'icon_url' => 'https://res.cloudinary.com/dkodlna7g/image/upload/v1694640480/fcqc3jvo4gsvv63rl3pj.jpg',
+            'message' => 'よろしく！！',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
             ]);
