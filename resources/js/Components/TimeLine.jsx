@@ -22,14 +22,16 @@ const TimeLine = (props) => {
     return (
         <Container>
             { posts.map((post) => (
-                <Card sx={{ p: 2, m:1}}key={post.id}>
-                    <Box sx={{ display:'flex', alignItems: 'center'}}>
-                        <Avatar src={ post.author.icon_url } />
-                        <Typography variant="h5" sx={{ ml: 1 }}>{ post.author.name }</Typography>
+                <Card sx={{ p:2, m:1 }} key={post.id}>
+                    <Box sx={{ display:'flex', alignItems:'center', justifyContent: 'space-between' }}>
+                        <Box sx={{ display:'flex', alignItems: 'center'}}>
+                            <Avatar src={ post.author.icon_url } />
+                            <Typography variant="h5" sx={{ ml: 1 }}>{ post.author.name }</Typography>
+                        </Box>
+                        <Button variant="outlined">{ post.category.name }</Button>
                     </Box>
-                    <Typography variant="body1">{ post.body }</Typography>
-                    <Button variant="outlined">{ post.category.name }</Button>
-                    <ImageList sx={{ width: 500, }} cols={2} rowHeight={164}>
+                    <Typography sx={{ m:1 }} variant="body1">{ post.body }</Typography>
+                    <ImageList sx={{ m:1, width: 483 }} cols={2} rowHeight={135} variant="quilted">
                       {post.images.map((image) => (
                         <ImageListItem key={image.image_url}>
                           <img
@@ -41,7 +43,7 @@ const TimeLine = (props) => {
                         </ImageListItem>
                       ))}
                     </ImageList>
-                    <Typography>コメント数：{ post.comments.length }</Typography>
+                    <Typography sx={{ m:1 }}>コメント数：{ post.comments.length }</Typography>
                 </Card>
             )) }
         </Container>

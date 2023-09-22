@@ -1,9 +1,11 @@
 import React from "react";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import TimeLine from "@/Components/TimeLine";
+import CreatePost from "@/Pages/Post/CreatePost";
+import { Avatar, Paper, Container, Card, Typography, Box, Button, ImageList, ImageListItem, TextField, Select, MenuItem, FormControl, InputLabel} from '@mui/material';
 
-const Mypage = (props) => {
-    const { posts, user } = props;
+const Home = (props) => {
+    const { posts, categories } = props;
     
     return (
         <Authenticated auth={props.auth} header={
@@ -12,10 +14,13 @@ const Mypage = (props) => {
                 </h2>
             }>
             
-            <TimeLine posts={ posts }/>
+            <Box sx={{ display: 'flex' }}>
+                <TimeLine posts={ posts }/>
+                <CreatePost categories={ categories } auth={ props.auth }/>
+            </Box>
             
         </Authenticated>
     );
 }
 
-export default Mypage;
+export default Home;

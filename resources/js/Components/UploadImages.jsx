@@ -11,7 +11,9 @@ function UploadImages() {
         // Do something with the files
         console.log('acceptedFiles:', acceptedFiles);
     }, []);
+    
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+    
     return (
         <div {...getRootProps()} style={style}>
             <input {...getInputProps()} />
