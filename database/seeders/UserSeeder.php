@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('users')->truncate(); //データクリア
+        DB::table('users')->truncate(); //データクリア
         
         DB::table('users')->insert([
             'name' => 'user1',

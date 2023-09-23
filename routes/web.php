@@ -32,6 +32,9 @@ Route::get('/dashboard', function () {
 
 Route::controller(PostController::class)->middleware(['auth'])->group(function(){
     Route::get('/mypage/{user}', 'mypage')->name('mypage');
+    Route::get('/home', 'home')->name('home');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/create', 'store')->name('store');
 });
 
 Route::middleware('auth')->group(function () {
