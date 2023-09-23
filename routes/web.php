@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,6 +36,11 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/home', 'home')->name('home');
     Route::get('/create', 'create')->name('create');
     Route::post('/create', 'store')->name('store');
+    Route::get('/test', 'test')->name('test');
+});
+
+Route::controller(CategoryController::class)->middleware(['auth'])->group(function(){
+    Route::post('/follow/category', 'followCategory')->name('follow.category');
 });
 
 Route::middleware('auth')->group(function () {

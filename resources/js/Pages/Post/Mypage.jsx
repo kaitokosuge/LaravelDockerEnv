@@ -4,9 +4,10 @@ import { Avatar, Card, Typography, Box, Accordion, AccordionSummary, AccordionDe
 // import { ExpandMoreIcon } from '@mui/icons-material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TimeLine from "@/Components/TimeLine";
+import FollowCategories from "@/Components/FollowCategories";
 
 const Mypage = (props) => {
-    const { posts, user } = props;
+    const { posts, user, categories } = props;
     
     return (
         <Authenticated auth={props.auth} header={
@@ -42,7 +43,10 @@ const Mypage = (props) => {
                 </Accordion>
             </Card>
             
-            <TimeLine posts={ posts }/>
+            <Box sx={{ display: 'flex' }}>
+                <TimeLine posts={ posts }/>
+                <FollowCategories categories={ categories } user={ user }/>
+            </Box>
             
         </Authenticated>
     );

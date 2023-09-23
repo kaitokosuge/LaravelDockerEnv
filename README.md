@@ -24,6 +24,19 @@ https://mui.com/system/getting-started/
 そもそもurlに飛んでも画像表示できないしこのurlなんなんだ
 - [ ] 縦長画像の表示  
 下の画像貫通する。MUIのドキュメントとか探すか。
+- [x] IconButton要素を使うと、中の画像がクリックされたことになってbutton要素のvalueが取得できない。  
+中身に`pointer-events: none`をスタイリングするとその要素のクリックイベントを無効にできる。  
+z-indexとかposition: relativeは効果なかった。  
+- [x] ボタンワンクリックでバックエンドに情報を送りたい。フォローとかいいねとか
+useState使うとレンダリングされるまで値が反映されないから使えない。  
+fetchAPIてやつ使ったら419言われた。csrf自分でやんのか？
+https://github.com/JakeChampion/fetch
+下の二つの記事でいけるかも
+https://yanamura.hatenablog.com/entry/2017/05/12/094103
+https://www.engilaboo.com/laravel-react-csrf/  
+エラーが500になったが余計原因がわからず詰み  
+SQLのリレーションミスってただけだった()
+- [ ] ログインボタンを二回押さないとdashboardに遷移しない
 
 ## 日記
 ### 9/16
@@ -61,3 +74,11 @@ useFormをreact-hook-formのやつで調べてて全然違うこと書いてあ�
 ### 9/22
 - 投稿作成をホーム画面に移した
 propsにログイン中のユーザー情報がauthで入ってるのはweb.phpから直接呼ばれたjsxのみっぽい。jsxから呼んだjsxにはprops.authが無かった。
+- カテゴリーを投稿の右上にした
+flexboxの入れ子という新たな技法。かなり使える場面多そう。
+- react-windowがimportできない。
+`import { FixedSizeList } from 'react-window`だとMinified React error #130言われる。
+
+### 9/23
+- カテゴリーフォローボタン作った
+- `class="hoge"`だとclassがhogeだけになるけど、`className="hoge"`だともとのクラスにhogeが追加される
