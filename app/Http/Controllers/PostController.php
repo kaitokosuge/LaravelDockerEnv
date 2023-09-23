@@ -14,10 +14,10 @@ use Cloudinary;
 
 class PostController extends Controller
 {
-    public function mypage(User $user)
+    public function mypage(User $user, Category $category)
     {
         $myposts = $user->posts->load('comments');
-        return Inertia::render("Post/Mypage", ["posts" => $myposts, "user" => $user->load("categories")]);
+        return Inertia::render("Post/Mypage", ["posts" => $myposts, "user" => $user->load("categories"), "categories" => $category->get()]);
     }
     
     public function home(Post $post, Category $category)
@@ -44,5 +44,10 @@ class PostController extends Controller
         }
         
         return redirect(route("home"));
+    }
+    
+    public function test()
+    {
+        return Inertia::render("Post/Test");
     }
 }

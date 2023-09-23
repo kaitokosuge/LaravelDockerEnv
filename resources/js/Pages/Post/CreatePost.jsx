@@ -1,10 +1,8 @@
 import React, {useEffect, useState, useMemo} from "react";
-import Authenticated from "@/Layouts/AuthenticatedLayout";
 import Post from "@/Components/Post";
-import { Head, Link, useForm } from '@inertiajs/react';
-import { useCallback } from 'react';
+import { useForm } from '@inertiajs/react';
 import { useDropzone } from 'react-dropzone';
-import { Avatar, Paper, Container, Card, Typography, Box, Button, ImageList, ImageListItem, TextField, Select, MenuItem, FormControl, InputLabel} from '@mui/material';
+import { Card, Typography, Box, Button, ImageList, ImageListItem, TextField, Select, MenuItem, FormControl, InputLabel} from '@mui/material';
 
 const baseStyle = {
   flex: 1,
