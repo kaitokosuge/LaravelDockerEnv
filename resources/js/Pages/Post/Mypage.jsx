@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
+import Header from "@/Layouts/Header";
 import { Avatar, Card, Typography, Box, Accordion, AccordionSummary, AccordionDetails, List, ListItem, ListItemButton, ListItemText} from '@mui/material';
 // import { ExpandMoreIcon } from '@mui/icons-material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -7,14 +8,22 @@ import TimeLine from "@/Components/TimeLine";
 import FollowCategories from "@/Components/FollowCategories";
 
 const Mypage = (props) => {
-    const { posts, user, categories } = props;
+    const { posts, categories } = props;
+    
+    const [ followingCategories, setFollowingCategories ] = useState(props.user.categories);
+    const [ user, setUser ] = useState(props.user);
+    console.log(user);
+    
+    const addFollowingCategory = (id, name) => {
+        // followingCategories.push({id:4, name:"ダンガンロンパ"})
+        setFollowingCategories([ ...followingCategories, {id:id, name:name}])
+        setUser({ ...user, categories: [ ...user.categories, {id:id, name:name}]})
+        // setFollowingCategories([ ...followingCategories, {id:4, name:"ダンガンロンパ"}])
+        // console.log(followingCategories);
+    }
     
     return (
-        <Authenticated auth={props.auth} header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    { user.name }のマイページ
-                </h2>
-            }>
+        <Header auth={props.auth} header={`${user.name}のマイページ`}>
             <Card>
                 <Box sx={{ display:'flex', alignItems: 'center'}}>
                     <Avatar src={ user.icon_url } />
@@ -32,7 +41,7 @@ const Mypage = (props) => {
                     <AccordionDetails>
                         <List>
                             { user.categories.map((category) => (
-                                <ListItem disablePadding>
+                                <ListItem disablePadding key={category.id}>
                                     <ListItemButton component="a" href="#">
                                         <ListItemText primary={ category.name }/>
                                     </ListItemButton>
@@ -45,10 +54,10 @@ const Mypage = (props) => {
             
             <Box sx={{ display: 'flex' }}>
                 <TimeLine posts={ posts }/>
-                <FollowCategories categories={ categories } user={ user }/>
+                <FollowCategories categories={ categories } user={ user } addFollowingCategory={addFollowingCategory}/>
             </Box>
             
-        </Authenticated>
+        </Header>
     );
 }
 

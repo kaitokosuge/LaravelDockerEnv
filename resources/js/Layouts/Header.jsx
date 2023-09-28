@@ -28,7 +28,7 @@ import Logout from '@mui/icons-material/Logout';
 
 const drawerWidth = 240;
 
-export default function ClippedDrawer({auth, header, children}) {
+export default function Header({auth, header, children}) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -44,7 +44,7 @@ export default function ClippedDrawer({auth, header, children}) {
             <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
                 <Toolbar>
                     <Typography variant="h6" noWrap component="div">
-                        ホーム
+                        { header }
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -92,11 +92,12 @@ export default function ClippedDrawer({auth, header, children}) {
                     </List>
                 </Box>
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            <Box component="main" sx={{ flexGrow: 1, p: 3, bgcolor: '#bae0e0' }}>
                 <Toolbar />
                 {children}
             </Box>
         </Box>
+        
         <Menu
             anchorEl={anchorEl}
             id="account-menu"
