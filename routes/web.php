@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -41,6 +42,10 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
 
 Route::controller(CategoryController::class)->middleware(['auth'])->group(function(){
     Route::post('/follow/category', 'followCategory')->name('follow.category');
+});
+
+Route::controller(CommentController::class)->middleware(['auth'])->group(function(){
+    Route::post('/create/comment', 'create')->name('create.comment');
 });
 
 Route::middleware('auth')->group(function () {
