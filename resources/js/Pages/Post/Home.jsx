@@ -1,25 +1,21 @@
 import React from "react";
-import Authenticated from "@/Layouts/AuthenticatedLayout";
+import Header from "@/Layouts/Header";
 import TimeLine from "@/Components/TimeLine";
-import CreatePost from "@/Pages/Post/CreatePost";
-import { Avatar, Paper, Container, Card, Typography, Box, Button, ImageList, ImageListItem, TextField, Select, MenuItem, FormControl, InputLabel} from '@mui/material';
+import CreatePost from "@/Components/CreatePost";
+import { Box } from '@mui/material';
 
 const Home = (props) => {
     const { posts, categories } = props;
     
     return (
-        <Authenticated auth={props.auth} header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    ホーム
-                </h2>
-            }>
+        <Header auth={props.auth} header="ホーム">
             
             <Box sx={{ display: 'flex' }}>
-                <TimeLine posts={ posts }/>
+                <TimeLine posts={ posts } auth={ props.auth }/>
                 <CreatePost categories={ categories } auth={ props.auth }/>
             </Box>
             
-        </Authenticated>
+        </Header>
     );
 }
 

@@ -22,7 +22,8 @@ class PostController extends Controller
     
     public function home(Post $post, Category $category)
     {
-        return Inertia::render("Post/Home", ["posts" => $post->orderBy('created_at', 'desc')->get()->load('comments'), "categories" => $category->get()]);
+        // dd($post->get()->load('comments.author'));
+        return Inertia::render("Post/Home", ["posts" => $post->orderBy('created_at', 'desc')->get()->load('comments.author'), "categories" => $category->get()]);
     }
     
     public function create(Category $category)

@@ -23,5 +23,12 @@ class CommentSeeder extends Seeder
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);
+        DB::table('comments')->insert([
+            'user_id' => '3',
+            'post_id' => '1',
+            'body' => 'それはこうも考えられませんか？',
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+        ]);
     }
 }

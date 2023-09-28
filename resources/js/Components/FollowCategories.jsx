@@ -19,42 +19,24 @@ const getCsrfToken = () => {
 
 const FollowCategories = (props) => {
     const { categories, user } = props;
-    const followingCategories = [];
-    user.categories.forEach(category => {
-       followingCategories.push(category.id); 
-    });
-    console.log(followingCategories);
     
-    const {data, setData, post} = useForm({
-        user_id: user.id,
-        category_id: 0,
-    })
-    
+    // 検索まわり
     const [ searchTerm, setSearchTerm ] = useState("");
-    console.log(searchTerm);
     const searchCategories = (e) => {
         e.preventDefault();
         const categoryOptions = document.querySelectorAll('.category-option');
         categoryOptions.forEach(category => {
             if(category.textContent.toLowerCase().includes(searchTerm)) {
-                category.style.display = 'flex'; // Matched shop names are displayed
+                category.style.display = 'flex';
             } else {
-                category.style.display = 'none'; // Non-matching shop names are hidden
+                category.style.display = 'none';
             }
         })
     }
     
-    console.log("a");
-    console.log(data);
-    
-    const handleSendData = (e) => {
-        console.log("b");
-        e.preventDefault();
-        setData("category_id", e.target.value)
-        post(route("follow.category"));
-    }
-    
-    const followCategory = (e) => {
+    // カテゴリーのフォローボタンを押したときの処理
+    const followCategory = (e, id, name) => {
+        props.addFollowingCategory(id, name);
         window.fetch(route("follow.category"), {
             method: 'POST',
             credentials: 'same-origin',
@@ -63,7 +45,7 @@ const FollowCategories = (props) => {
                 'X-CSRF-Token': getCsrfToken()
             },
                 body: JSON.stringify({
-                    category_id: e.target.value,
+                    category_id: id,
             })
         })
     }
@@ -84,10 +66,10 @@ const FollowCategories = (props) => {
                     <SearchIcon/>
                 </IconButton>
             </Paper>
-            <Box component="form" onSubmit={handleSendData}>
+            <Box component="form" onSubmit={() => console.log("a")}>
                 <List>
                     { categories.map((category) => (
-                        followingCategories.includes(category.id) ? (
+                        user.categories.includes(category.id) ? (
                             <div></div>
                         ) : (
                             <ListItem sx={{ display:'none' }} disablePadding className="category-option">
@@ -95,9 +77,9 @@ const FollowCategories = (props) => {
                                     sx={{ type:'submit' }}
                                     arial-label=""
                                     size="small"
-                                    value={category.id}
+                                    // value={category.id}
                                     // onClick={handleSendData}
-                                    onClick={followCategory}
+                                    onClick={(e) => followCategory(e, category.id, category.name)}
                                 >
                                     <PlaylistAddIcon sx={{ pointerEvents: 'none' }}/>
                                 </IconButton>
