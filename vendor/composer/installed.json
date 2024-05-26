@@ -1,14 +1,9 @@
 {
-    "_readme": [
-        "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-        "This file is @generated automatically"
-    ],
-    "content-hash": "a6f8c8136df288ab9948f7c6e5424dd8",
     "packages": [
         {
             "name": "composer/installers",
             "version": "v2.2.0",
+            "version_normalized": "2.2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
@@ -32,6 +27,7 @@
                 "symfony/phpunit-bridge": "^5.3",
                 "symfony/process": "^5"
             },
+            "time": "2022-08-20T06:45:11+00:00",
             "type": "composer-plugin",
             "extra": {
                 "class": "Composer\\Installers\\Plugin",
@@ -40,6 +36,7 @@
                 },
                 "plugin-modifies-install-path": true
             },
+            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "Composer\\Installers\\": "src/Composer/Installers"
@@ -149,11 +146,12 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-20T06:45:11+00:00"
+            "install-path": "./installers"
         },
         {
             "name": "pusher/pusher-php-server",
             "version": "2.1.2",
+            "version_normalized": "2.1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pusher/pusher-http-php.git",
@@ -169,7 +167,9 @@
                 "composer/installers": "*",
                 "php": ">=5.2"
             },
+            "time": "2012-11-18T10:49:49+00:00",
             "type": "library",
+            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Pusher": "lib/"
@@ -191,16 +191,9 @@
                 "issues": "https://github.com/pusher/pusher-http-php/issues",
                 "source": "https://github.com/pusher/pusher-http-php/tree/v2.1.2"
             },
-            "time": "2012-11-18T10:49:49+00:00"
+            "install-path": "../pusher/pusher-php-server"
         }
     ],
-    "packages-dev": [],
-    "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
-    "prefer-stable": false,
-    "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "dev": true,
+    "dev-package-names": []
 }
